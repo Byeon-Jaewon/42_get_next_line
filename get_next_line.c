@@ -1,4 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbyeon <jbyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 16:45:22 by jbyeon            #+#    #+#             */
+/*   Updated: 2021/02/23 17:50:28 by jbyeon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
+
+int		split(char **backup, char **line, int nlidx)
+{
+	char			*tmp;
+
+	(*backup)[nlidx] = '\0';
+	*line = ft_strdup(*backup);
+	tmp = ft_strdup(*backup + nlidx + 1);
+	free(*backup);
+	*backup = tmp;
+	return (1);
+}
+
+int		unsplit(char **backup, char **line)
+{
+	*line = *backup;
+	*backup = NULL;
+	return (0);
+}
 
 int		get_next_line(int fd, char **line)
 {
@@ -6,7 +37,6 @@ int		get_next_line(int fd, char **line)
 	char			buf[BUFFER_SIZE + 1];
 	int				size;
 	int				nlidx;
-	static int				cursor = 0;
 
 	if ((fd < 0) || (line == 0) || (BUFFER_SIZE <= 0))
 		return (-1);
@@ -14,40 +44,16 @@ int		get_next_line(int fd, char **line)
 	{
 		buf[size] = '\0';
 		backup = ft_strjoin(backup, buf);
+		nlidx = ft_strchr(backup, '\n');
+		if (nlidx >= 0)
+			return (split(&backup, line, nlidx));
 	}
-	nlidx = ft_strchr(backup + cursor, '\n');
-	if (nlidx >= 0)
-	{
-		backup[nlidx] = '\0';
-		*line = ft_strdup(backup + cursor);
-		cursor = cursor+ nlidx + 1;
-		return (1);
-	}
-	else if ((backup + cursor)&& (nlidx < 0)) 
-	{
-		*line = ft_strdup(backup + cursor);
-		
-		return (0);
-	}
-	else
-	{
-		*line = ft_strdup("");
-		return (0);
-	}
+	if (size < 0)
+		return (-1);
+	if (backup != NULL && (nlidx = ft_strchr(backup, '\n')) >= 0)
+		return (split(&backup, line, nlidx));
+	if (backup != NULL)
+		return (unsplit(&backup, line));
+	*line = ft_strdup("");
+	return (0);
 }
-/*
-int	main()
-{
-	int		ret;
-	int		fd;
-	char	*line;
-
-	fd = open("Your text", O_RDONLY);
-	while ((ret = (get_next_line(fd, &line)) > 0))
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	printf("%s\n", line);
-	free(line);
-}*/

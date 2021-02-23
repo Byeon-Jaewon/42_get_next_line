@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbyeon <jbyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 14:45:15 by jbyeon            #+#    #+#             */
+/*   Updated: 2021/02/23 16:49:33 by jbyeon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t		ft_strlen(const char *s)
@@ -70,9 +82,9 @@ char		*ft_strdup(char *src)
 		tmp[i] = src[i];
 		i++;
 	}
+	tmp[i] = '\0';
 	return (tmp);
 }
-
 
 int			ft_strchr(const char *s, int c)
 {
