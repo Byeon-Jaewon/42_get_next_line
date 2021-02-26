@@ -6,7 +6,7 @@
 /*   By: jbyeon <jbyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:45:22 by jbyeon            #+#    #+#             */
-/*   Updated: 2021/02/23 17:50:28 by jbyeon           ###   ########.fr       */
+/*   Updated: 2021/02/26 13:38:35 by jbyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		get_next_line(int fd, char **line)
 	int				size;
 	int				nlidx;
 
-	if ((fd < 0) || (line == 0) || (BUFFER_SIZE <= 0))
+	if ((fd < 0) || (line == 0) || (BUFFER_SIZE < 0))
 		return (-1);
 	while ((size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{

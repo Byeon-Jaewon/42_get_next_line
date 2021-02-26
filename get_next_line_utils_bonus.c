@@ -45,25 +45,22 @@ size_t		ft_strlcat(char *dest, const char *src, size_t size)
 	return (i + src_len);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	char	*tmp1;
-	char	*tmp2;
 	size_t	size;
 
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
-	tmp1 = (char *)s1;
-	tmp2 = (char *)s2;
-	if ((tmp1 == NULL) || (tmp2 == NULL))
-		return (!(tmp1) ? ft_strdup(tmp2) : ft_strdup(tmp1));
-	size = ft_strlen(tmp1) + ft_strlen(tmp2);
+	if ((s1 == NULL) || (s2 == NULL))
+		return (!(s1) ? ft_strdup(s2) : ft_strdup(s1));
+	size = ft_strlen(s1) + ft_strlen(s2);
 	if (!(str = (char *)malloc(size + 1)))
 		return (NULL);
 	str[0] = '\0';
-	ft_strlcat(str, tmp1, ft_strlen(tmp1) + 1);
-	ft_strlcat(str, tmp2, ft_strlen(str) + ft_strlen(tmp2) + 1);
+	ft_strlcat(str, s1, ft_strlen(s1) + 1);
+	free(s1);
+	ft_strlcat(str, s2, ft_strlen(str) + ft_strlen(s2) + 1);
 	return (str);
 }
 
