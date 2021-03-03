@@ -6,7 +6,7 @@
 /*   By: jbyeon <jbyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 14:45:07 by jbyeon            #+#    #+#             */
-/*   Updated: 2021/02/23 16:51:02 by jbyeon           ###   ########.fr       */
+/*   Updated: 2021/03/03 11:40:25 by jbyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@
 #  define BUFFER_SIZE 5000
 # endif
 
+# ifndef OPEN_MAX
+#  define OPEN_MAX 256
+# endif
+
 int			get_next_line(int fd, char **line);
-int			ft_strchr(const char *s, int c);
+int			ft_strchr(char *s, int c);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcat(char *dest, const char *src, size_t size);
 char		*ft_strjoin(char *s1, char *s2);

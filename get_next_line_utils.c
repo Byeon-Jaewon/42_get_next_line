@@ -6,7 +6,7 @@
 /*   By: jbyeon <jbyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 14:45:15 by jbyeon            #+#    #+#             */
-/*   Updated: 2021/02/23 16:49:33 by jbyeon           ###   ########.fr       */
+/*   Updated: 2021/03/03 11:35:32 by jbyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,16 @@ char		*ft_strdup(char *src)
 	return (tmp);
 }
 
-int			ft_strchr(const char *s, int c)
+int			ft_strchr(char *s, int c)
 {
-	char	*ptr;
 	int		i;
 
-	ptr = (char *)s;
+	if (s == NULL)
+		return (-1);
 	i = 0;
-	while (ptr[i] != '\0')
+	while (s[i] != '\0')
 	{
-		if (ptr[i] == c)
+		if (s[i] == c)
 			return (i);
 		i++;
 	}

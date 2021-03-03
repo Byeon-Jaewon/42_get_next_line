@@ -6,7 +6,7 @@
 /*   By: jbyeon <jbyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 14:38:31 by jbyeon            #+#    #+#             */
-/*   Updated: 2021/02/26 14:31:41 by jbyeon           ###   ########.fr       */
+/*   Updated: 2021/03/03 11:38:48 by jbyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			unsplit(char **backup, char **line)
 
 int			get_next_line(int fd, char **line)
 {
-	static char		*backup[_SC_OPEN_MAX];
+	static char		*backup[OPEN_MAX];
 	char			buf[BUFFER_SIZE + 1];
 	int				size;
 	int				nlidx;
